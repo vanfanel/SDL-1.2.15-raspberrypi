@@ -285,13 +285,17 @@ static void DISPMANX_SurfaceSetup(int width,
 		pthread_mutex_init(&surface->pages[i].page_used_mutex, NULL); 
 	}
 
-	dst_width  = _dispvars->dispmanx_height * aspect;	
-	dst_height = _dispvars->dispmanx_height;
+	dst_width  = _dispvars->dispmanx_height * aspect;
+	dst_height = _dispvars->dispmanx_width / aspect;
 
-	/* If we obtain a scaled image width that is bigger than the physical screen width,
-	* then we keep the physical screen width as our maximun width. */
-	if (dst_width > _dispvars->dispmanx_width) 
-	   dst_width = _dispvars->dispmanx_width;
+	/* Don't scale image larger than the screen */
+	if (dst_width > _dispvars->dispmanx_width) {
+		dst_width = _dispvars->dispmanx_width;
+	}
+
+	if (dst_height > _dispvars->dispmanx_height) {
+		dst_height = _dispvars->dispmanx_height;
+	}
 
 	dst_xpos = (_dispvars->dispmanx_width - dst_width) / 2;
 	dst_ypos = (_dispvars->dispmanx_height - dst_height) / 2;
