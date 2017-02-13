@@ -6,7 +6,7 @@ This leads to optimal performance.
 BUILDING
 ========
 
-Run the MAC_ConfigureSDL12-rpi*.sh script corresponding to your Raspberry Pi model (1 or 2), and then simply do:
+Run the MAC_ConfigureSDL12-rpi*.sh script corresponding to your Raspberry Pi model (1, 2, or 3), and then simply do:
 make
 sudo make install
 
